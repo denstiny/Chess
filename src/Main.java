@@ -12,18 +12,15 @@ public class Main {
         }
 
         while (true) {
-            if(!gameChess.ismove) {
-
-                gameChess1.ismove = true;
-                System.out.println("红棋移动");
-                //gameChess1.send(gameChess);
-
+            if(!gameChess.getIsmove()) {
+                gameChess1.setIsmove(true);
+                //System.out.println("红棋移动");
+                gameChess1.send(gameChess);
             }
-            if(!gameChess1.ismove){
-
-                gameChess.ismove = true;
-                System.out.println("黑棋移动");
-                //gameChess.send(gameChess1);
+            if(!gameChess1.getIsmove()){
+                gameChess.setIsmove(true);
+                //System.out.println("黑棋移动");
+                gameChess.send(gameChess1);
 
             }
         }

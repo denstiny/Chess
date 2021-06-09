@@ -2,6 +2,8 @@ package com.jxrj.aero;
 
 import java.awt.*;
 import java.util.ArrayList;
+import java.util.concurrent.locks.Lock;
+import java.util.concurrent.locks.ReentrantLock;
 
 public class Chess {
     // 名字

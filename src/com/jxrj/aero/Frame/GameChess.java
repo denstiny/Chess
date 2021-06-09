@@ -4,10 +4,12 @@ import com.jxrj.aero.Chess;
 import java.awt.*;
 import java.awt.event.*;
 import java.util.ArrayList;
+import java.util.concurrent.locks.Lock;
+import java.util.concurrent.locks.ReentrantLock;
 
 public class GameChess  extends Frame {
     // 是否可以移动
-    public boolean ismove = false;
+    public volatile boolean ismove = false;
     // 上次移动的棋子
     public Chess upChess;
     // 是否胜利
@@ -156,7 +158,8 @@ public class GameChess  extends Frame {
                         if(chess.get(i).ismove) {
                             if(ismove) {
                                 chess.get(i).moveTo(points,new Point(e.getX(),e.getY()));
-                                ismove = false;
+                                //ismove = false;
+                                setIsmove(false);
                                 upChess = chess.get(i);
                             }
                             else {
@@ -188,18 +191,32 @@ public class GameChess  extends Frame {
                 if(!isread) {
                     // 选中的是红子 返回 true 否则 返回 false
                     if(chess.get(i).name.contains("红")) {
-                        chess.get(i).ismove = true;
                         System.out.println("红");
-                        return true;
+
+                        if(ismove) {
+                            System.out.println("可以移动");
+                            chess.get(i).ismove = true;
+                            return true;
+                        }else {
+                            System.out.println("不可移动");
+                            return false;
+                        }
                     }
                 }
                 // 当前执子是黑
                 else  {
                     // 选中的黑字 返回true 否则 返回 false
                     if(chess.get(i).name.contains("黑")) {
-                        chess.get(i).ismove = true;
                         System.out.println("黑");
-                        return true;
+
+                        if(ismove) {
+                            System.out.println("可以移动");
+                            chess.get(i).ismove = true;
+                            return true;
+                        }else {
+                            System.out.println("不可移动");
+                            return false;
+                        }
                     }
                 }
             }
@@ -262,5 +279,15 @@ public class GameChess  extends Frame {
                 chess.get(i).setPoint(p);
             }
         }
+    }
+    public boolean setIsmove(boolean ismove) {
+        Lock lock = new ReentrantLock();
+        lock.lock();
+        this.ismove = ismove;
+        lock.unlock();
+        return ismove;
+    }
+    public boolean getIsmove() {
+        return this.ismove;
     }
 }
