@@ -1,55 +1,69 @@
 package com.jxrj.aero;
 
 import java.awt.*;
-import java.util.ArrayList;
-import java.util.concurrent.locks.Lock;
-import java.util.concurrent.locks.ReentrantLock;
 
 public class Chess {
-    // 名字
-    public String name;
-    // 坐标
-    private Point point = new Point();
-    // icon
+	private boolean canMove = false;
+    private boolean isRead;
+    private String name;
     private Image icon;
-    // 可以移动
-    public boolean ismove = false;
-    // 设置名字
+    private int x;
+    private int y;
+    public Chess(boolean isRead,String name,int x,int y) {
+        this.isRead = isRead;
+        this.name = name;
+        this.x = x;
+        this.y = y;
+        icon = Toolkit.getDefaultToolkit().getImage("/home/aero/IdeaProjects/chess/src/com/jxrj/aero/image/"+name+".gif");
+		System.out.println("创建棋子" + name);
+    }
+    public boolean getisread() {
+        return this.isRead;
+    }
+    public boolean setIsRead(boolean isRead) {
+        this.isRead = isRead;
+        return this.isRead;
+    }
+
     public void setName(String name) {
         this.name = name;
     }
-    // 设置坐标
-    public void setPoint(Point point) {
-        this.point = point;
+
+    public String getName() {
+        return name;
     }
-    // 设置图标
-    public void setIcon(Image icon) {
-        this.icon = icon;
+
+    public int getX() {
+        return (int)GameChess.chessMap[x][y].getX();
     }
-    // 移动
-    public boolean moveTo(ArrayList<Point> list,Point point) {
-        System.out.println("移动棋子" + name );
-        for (int i = 0;i < list.size();i++) {
-           if(
-                   (list.get(i).getX() < point.getX() && list.get(i).getY() < point.getY())
-                   &&
-                   (list.get(i).getX()+70 > point.getX() && list.get(i).getY() + 70 > point.getY())
-           ) {
-               setPoint(list.get(i));
-               ismove = false;
-           }
-       }
-       return false;
+
+    public int getY() {
+        return (int)GameChess.chessMap[x][y].getY();
     }
-    public void moveTo(double x, double  y) {
-        point.setLocation(x,y);
+	public int get_X() {
+		return x;
+	}
+	public int get_Y() {
+		return y;
+	}
+    public void setX(int x) {
+        this.x = x;
     }
-    // 获取坐标
-    public Point getPoint() {
-        return this.point;
+
+    public void setY(int y) {
+        this.y = y;
     }
-    // 获取图标
-    public Image getIcon() {
-        return this.icon;
-    }
+	public Image GetIcon() {
+		return this.icon;
+	}
+	public Image SetIcon(Image icon) {
+		this.icon = icon;
+		return this.icon;
+	}
+	public void setCanMove() {
+		this.canMove = !this.canMove;
+	}
+	public boolean getCanMove() {
+		return this.canMove;
+	}
 }
