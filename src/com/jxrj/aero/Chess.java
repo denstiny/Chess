@@ -32,7 +32,6 @@ public class Chess {
     public String getName() {
         return name;
     }
-
     public int getX() {
         return (int)GameChess.chessMap[x][y].getX();
     }

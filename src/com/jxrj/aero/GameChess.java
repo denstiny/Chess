@@ -52,6 +52,8 @@ public class GameChess extends Frame {
 								// 判断 移动到的位置是否存在 棋子,存在就删除
 								if(chess[i] != null && chess[i].get_X() == (int)p.getX() && chess[i].get_Y() == (int)p.getY()) {
 									System.out.println("吃掉棋子" + chess[i].getName());
+									if(chess[i].getName().contains("将"))
+										ChessWin(chess[i]);
 									chess[i] = null;
 									break;
 								}
@@ -159,5 +161,25 @@ public class GameChess extends Frame {
 	   }
 	   return null;
    }
-
+public void ChessWin(Chess chess) {
+	if(chess.getisread()) {
+		System.out.println("黑方胜利");
+		repaint();
+        try {
+            Thread.sleep(1000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+        System.exit(0);
+	}else {
+		System.out.println("红方胜利");
+		repaint();
+        try {
+            Thread.sleep(1000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+        System.exit(0);
+	}
+}
 }
