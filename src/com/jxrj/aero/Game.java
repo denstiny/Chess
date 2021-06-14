@@ -65,8 +65,13 @@ public class Game extends Frame {
 				System.out.println(e.getX() + " " + e.getY());
 				int max_x = windowWidth / 2 - 500 / 2 ;
 				int max_y = windowHeight / 2;
-				if(e.getX() > max_x && e.getX() < max_x + 100 && e.getY() > max_y && e.getY() < max_y + 500) {
+				if(e.getX() > max_x && e.getX() < max_x + 500 && e.getY() > max_y && e.getY() < max_y + 100) {
+//					setVisible(false);
+					dispose();
 					GameStart(gameChess);
+				}
+				if(e.getX() > max_x && e.getX() < max_x + 500 && e.getY() > max_y + 100 && e.getY() < max_y + 200) {
+					System.exit(0);
 				}
 			}
 		});
@@ -86,6 +91,17 @@ public class Game extends Frame {
 		}
 	}
 	public void GameStart(GameChess gameChess) {
+		ChessVictory();
 		gameChess.GameChessStart();
+	}
+
+	// 开始和结束音效
+	public void ChessVictory() {
+		try {
+			process = Runtime.getRuntime().exec(
+			              "paplay /mnt/home/code/java/Chess/src/com/jxrj/aero/music/win.wav");
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
 	}
 }

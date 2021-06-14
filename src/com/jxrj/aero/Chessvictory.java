@@ -24,10 +24,6 @@ public class Chessvictory extends Frame {
 	                             "/mnt/home/code/java/Chess/src/com/jxrj/aero/Image/red-win.png");
 	private Image AllReset = Toolkit.getDefaultToolkit().getImage(
 	                             "/mnt/home/code/java/Chess/src/com/jxrj/aero/Image/ButtonAllReset_1.png");
-	private Image Start = Toolkit.getDefaultToolkit().getImage(
-	                          "/mnt/home/code/java/Chess/src/com/jxrj/aero/Image/Menu1_1.png");
-	private Image Exit = Toolkit.getDefaultToolkit().getImage(
-	                         "/mnt/home/code/java/Chess/src/com/jxrj/aero/Image/Menu4_1.png");
 
 
 	private ArrayList<ChessElement> Element = new ArrayList<>();
@@ -55,10 +51,9 @@ public class Chessvictory extends Frame {
 				if(MouseEvent.BUTTON1 != e.getButton()) {
 					return;
 				}
-				System.out.println(e.getX() + " " + e.getY());
-				int max_x = windowWidth / 2 - 500 / 2 ;
-				int max_y = windowHeight / 2;
-				if(e.getX() > 160 && e.getX() < 170 && e.getY() > 534 && e.getY() < 570) {
+				System.out.println( "---"  + e.getX() + " " + e.getY());
+				if(e.getX() > 160 && e.getX() < 560 && e.getY() > 534 && e.getY() < 583) {
+					System.out.println("重新开始");
 					GameStart(gameChess);
 				}
 			}
@@ -76,7 +71,8 @@ public class Chessvictory extends Frame {
 		// 设置窗口缩放
 		setResizable(false);
 		// chess 被吃掉的棋子
-		if (chess.getName().contains("将") )
+		if (chess.getName().contains("将") ) {
+			ChessVictory();
 			if (chess.getisread()) {
 				// 当被吃掉的是红将
 				readVicator();
@@ -84,19 +80,16 @@ public class Chessvictory extends Frame {
 				// 当被吃掉的是黑将
 				blackVicator();
 			}
+		}
 	}
 	// 红将胜利界面
 	public void blackVicator() {
-		gameChess.GameChessStart();
-		gameChess.repaint();
-		Element.clear();
 		Element.add(new ChessElement(read_win, windowWidth / 2 - 500 / 2, windowHeight / 2));
 		Element.add(new ChessElement(AllReset, windowWidth / 2 - 500 / 2, windowHeight / 2 + 100));
 		repaint();
 	}
 	// 黑将胜利界面
 	public void readVicator() {
-		Element.clear();
 		Element.add(new ChessElement(black_win, windowWidth / 2 - 500 / 2, windowHeight / 2));
 		Element.add(new ChessElement(AllReset, windowWidth / 2 - 500 / 2, windowHeight / 2 + 100));
 		repaint();
@@ -127,6 +120,9 @@ public class Chessvictory extends Frame {
 		}
 	}
 	public void GameStart(GameChess gameChess) {
+		//delete gameChess;
+		gameChess.dispose();
+		dispose();
 		gameChess.GameChessStart();
 	}
 }

@@ -10,7 +10,6 @@ public class GameChess extends Frame {
 	private  int  windowWidth = 700;
 	private int   windowHeight = 800;
 	private Image background = Toolkit.getDefaultToolkit().getImage("/home/aero/IdeaProjects/chess/src/com/jxrj/aero/image/main.gif");
-
 	// 游戏特效
 	private Chessvictory gameviVictory;
 	// 规则
@@ -20,6 +19,8 @@ public class GameChess extends Frame {
 		gameviVictory = new Chessvictory();
 	}
 	public void GameChessStart() {
+		//
+		isCanMove = true;
 		// isRead
 		isRead = true;
 		// 设置窗口大小
@@ -46,7 +47,8 @@ public class GameChess extends Frame {
 			@Override
 			public void mousePressed(MouseEvent e) {
 				// 判断是否为 鼠标左键
-				if(MouseEvent.BUTTON1 != e.getButton()) {
+				if(MouseEvent.BUTTON1 != e.getButton() && isCanMove) {
+					System.out.println("不可选中");
 					return;
 				}
 				Point p = locationChess(e.getX(), e.getY());
@@ -58,14 +60,15 @@ public class GameChess extends Frame {
 					// 判断选中的棋子是自己的棋子 且 该棋子可以移动
 					if(chess[0].getCanMove() && isRead == chess[0].getisread() ) {
 						if(chessRules.CanMove(new Point(chess[0].get_X(), chess[0].get_Y()), p, chess)) {
+							// 音效
+							gameviVictory.moveTo();
 							for (int i = 0; i < chess.length; i++) {
 								// 判断 移动到的位置是否存在 棋子,存在就删除
 								if(chess[i] != null && chess[i].get_X() == (int)p.getX() && chess[i].get_Y() == (int)p.getY()) {
 									System.out.println("吃掉棋子" + chess[i].getName());
-									// 音效
-									gameviVictory.moveTo();
-									if(chess[i].getName().contains("将"))
+									if(chess[i].getName().contains("将")) {
 										ChessWin(chess[i]);
+									}
 									chess[i] = null;
 									break;
 								}
