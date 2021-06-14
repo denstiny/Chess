@@ -14,8 +14,15 @@ public class ChessRules {
 		this.chess = chess;
 		this.after = after;
 		this.now = now;
-		System.out.println(" 移动前坐标 ==> " + now.getX() + " " + now.getY() + "移动后坐标 ==> " + after.getX() + " "
-		                   + after.getY() + "当前棋子 " + chess[0].getName());
+		System.out.println(" 移动前坐标 ==> "
+		                   + now.getX() + " "
+		                   + now.getY()
+		                   + "移动后坐标 ==> "
+		                   + after.getX()
+		                   + " "
+		                   + after.getY()
+		                   + "当前棋子 "
+		                   + chess[0].getName());
 		// 根据棋子判断是否可以移动
 		if (chess[0].getName().contains("卒"))
 			return chess[0].getisread() ? readZu() : blackZu();
@@ -73,7 +80,7 @@ public class ChessRules {
 		int len = 0;
 		Chess tempchess = null;
 		if (x == after.getX() && y != after.getY()) {
-			System.out.println("y");
+			//System.out.println("y");
 			for (int i = 1; i < Math.abs(after.getY() - y); i++) {
 				int _i = after.getY() < y ? i * -1 : i;
 				for (int n = 0; n < chess.length; n++) {
@@ -85,7 +92,7 @@ public class ChessRules {
 			}
 		}
 		if (x != after.getX() && y == after.getY()) {
-			System.out.println("x");
+			//System.out.println("x");
 			for (int i = 1; i < Math.abs(after.getX() - x); i++) {
 				int _i = after.getX() < x ? i * -1 : i;
 				for (int n = 0; n < chess.length; n++) {
@@ -193,18 +200,18 @@ public class ChessRules {
 			// 上下移动 是否憋马脚
 			System.out.println(now.getX() - l);
 			System.out.println(now.getY() - n);
-			if(chess[i] != null && x == 1 && y == 2 &&
+			if (chess[i] != null && x == 1 && y == 2 &&
 			        chess[i].get_Y() == now.getY() - n &&
 			        chess[i].get_X() == now.getX())
 				return false;
 			// 左右移动 是否憋马脚
-			if(chess[i] != null && x == 2 && y == 1 &&
+			if (chess[i] != null && x == 2 && y == 1 &&
 			        chess[i].get_Y() == now.getY() &&
 			        chess[i].get_X() == now.getX() - l)
 				return false;
 		}
 		// 如果是走日字
-		if((x == 1 && y == 2) || x == 2 && y == 1) {
+		if ((x == 1 && y == 2) || x == 2 && y == 1) {
 			return true;
 		}
 		return false;
@@ -213,19 +220,19 @@ public class ChessRules {
 	// 车
 	public boolean chessChe() {
 		for (int i = 0; i < chess.length; i++) {
-			if(chess[i] != null) {
+			if (chess[i] != null) {
 				// Y 轴移动
-				if(now.getX() == after.getX() && now.getY() != after.getY())
+				if (now.getX() == after.getX() && now.getY() != after.getY())
 					for (int n = 1; n < Math.abs(now.getY() - after.getY()); n++) {
 						int _n = now.getY() > after.getY() ? n * -1 : n;
-						if(chess[i].get_X() == now.getX()  && chess[i].get_Y() == now.getY() + _n)
+						if (chess[i].get_X() == now.getX()  && chess[i].get_Y() == now.getY() + _n)
 							return false;
 					}
 				// x 轴移动
-				if(now.getX() != after.getX() && now.getY() == after.getY()) {
+				if (now.getX() != after.getX() && now.getY() == after.getY()) {
 					for (int n = 1; n < Math.abs(now.getX() - after.getX()); n++) {
 						int _n = now.getX() > after.getX() ? n * -1 : n;
-						if(chess[i].get_X() == now.getX() + _n && chess[i].get_Y() == now.getY())
+						if (chess[i].get_X() == now.getX() + _n && chess[i].get_Y() == now.getY())
 							return false;
 					}
 				}
@@ -241,29 +248,29 @@ public class ChessRules {
 		boolean Thisismove = false;
 		// 如果要吃掉敌方将
 		for (int i = 0; i < chess.length; i++) {
-			if(chess[i] != null) {
+			if (chess[i] != null) {
 				// 查看目标棋子是否为将军
-				if(chess[i].get_X() == (int)after.getX() && chess[i].get_Y() == (int)after.getY()) {
+				if (chess[i].get_X() == (int)after.getX() && chess[i].get_Y() == (int)after.getY()) {
 					Thisismove = true;
 				}
 				// 查找路途中的棋子数量
 				for (int x = 1; x < Math.abs(now.getX() - after.getX()); x++) {
 					int _x = now.getX() > 5 ? x * -1 : x;
 					System.out.println("---" + chess[i].getName() + ((int)now.getX() + _x));
-					if(chess[i] != null && chess[i].get_X() == (int)now.getX() + _x && chess[i].get_Y() == (int)now.getY())
+					if (chess[i] != null && chess[i].get_X() == (int)now.getX() + _x && chess[i].get_Y() == (int)now.getY())
 						len++;
 				}
 				// 当前棋子
-				if(chess[i].get_X() == (int)now.getX() && chess[i].get_Y() == (int)now.getY()) {
+				if (chess[i].get_X() == (int)now.getX() && chess[i].get_Y() == (int)now.getY()) {
 					tempchess = chess[i];
 				}
 			}
 		}
-		if(Thisismove && len == 0) {
+		if (Thisismove && len == 0) {
 			return true;
 		}
 		// 判断是否行走一格 且不出皇宫
-		if(
+		if (
 		    tempchess != null &&
 		    (tempchess.getisread() ? after.getX() >= 7 : after.getX() <= 3) &&
 		    after.getY() >= 3 && after.getY() <= 5 &&
