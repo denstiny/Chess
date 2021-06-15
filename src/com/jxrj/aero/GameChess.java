@@ -19,8 +19,6 @@ public class GameChess extends Frame {
 		gameviVictory = new Chessvictory();
 	}
 	public void GameChessStart() {
-		//
-		isCanMove = true;
 		// isRead
 		isRead = true;
 		// 设置窗口大小
@@ -47,7 +45,7 @@ public class GameChess extends Frame {
 			@Override
 			public void mousePressed(MouseEvent e) {
 				// 判断是否为 鼠标左键
-				if(MouseEvent.BUTTON1 != e.getButton() && isCanMove) {
+				if(MouseEvent.BUTTON1 != e.getButton() ) {
 					System.out.println("不可选中");
 					return;
 				}

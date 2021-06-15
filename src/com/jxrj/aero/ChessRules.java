@@ -276,7 +276,7 @@ public class ChessRules {
 		    after.getY() >= 3 && after.getY() <= 5 &&
 		    ((Math.abs(now.getX() - after.getX()) == 1) && now.getY() == after.getY() ||
 		     (Math.abs(now.getY() - after.getY()) == 1) && now.getX() == after.getX()))
-			rjturn true;
+			return true;
 		return false;
 	}
 }
