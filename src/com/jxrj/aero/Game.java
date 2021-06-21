@@ -8,11 +8,9 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
-import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
 
-import javax.swing.Painter;
 public class Game extends Frame {
 
 	private  int  windowWidth = 700;
@@ -41,17 +39,17 @@ public class Game extends Frame {
 		// 播放背景音乐
 		try {
 			process = Runtime.getRuntime().exec(
-			              "mpg123 --loop -1 /mnt/home/code/java/Chess/src/com/jxrj/aero/music/bgm.mp3 &");
+			              "mpg123 --loop -1 /mnt/home/code/java/Chess/src/com/jxrj/aero/music/bgm.mp3");
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
-		System.out.println("音频播放");
 		// 监听退出
 		addWindowListener(new WindowAdapter() {
 			@Override
 			public void windowClosing(WindowEvent e) {
-				System.out.println("中断当前线程");
-				process.toHandle();
+				if (process.isAlive()) {
+					process.destroy();
+				}
 				System.exit(0);
 			}
 		});

@@ -9,11 +9,9 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
-import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
 
-import javax.swing.Painter;
 
 public class Chessvictory extends Frame {
 	private Image background = Toolkit.getDefaultToolkit().getImage(
@@ -27,7 +25,6 @@ public class Chessvictory extends Frame {
 
 
 	private ArrayList<ChessElement> Element = new ArrayList<>();
-
 
 	private  int  windowWidth = 700;
 	private int   windowHeight = 800;
@@ -54,6 +51,7 @@ public class Chessvictory extends Frame {
 				System.out.println( "---"  + e.getX() + " " + e.getY());
 				if(e.getX() > 160 && e.getX() < 560 && e.getY() > 534 && e.getY() < 583) {
 					System.out.println("重新开始");
+					ChessVictory();
 					GameStart(gameChess);
 				}
 			}
@@ -123,6 +121,6 @@ public class Chessvictory extends Frame {
 		//delete gameChess;
 		gameChess.dispose();
 		dispose();
-		gameChess.GameChessStart();
+		gameChess = new GameChess();
 	}
 }

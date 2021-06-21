@@ -46,7 +46,6 @@ public class GameChess extends Frame {
 			public void mousePressed(MouseEvent e) {
 				// 判断是否为 鼠标左键
 				if(MouseEvent.BUTTON1 != e.getButton() ) {
-					System.out.println("不可选中");
 					return;
 				}
 				Point p = locationChess(e.getX(), e.getY());
@@ -57,6 +56,7 @@ public class GameChess extends Frame {
 					System.out.println(chess[0].getName());
 					// 判断选中的棋子是自己的棋子 且 该棋子可以移动
 					if(chess[0].getCanMove() && isRead == chess[0].getisread() ) {
+						// 判断棋子移动是否符合规则
 						if(chessRules.CanMove(new Point(chess[0].get_X(), chess[0].get_Y()), p, chess)) {
 							// 音效
 							gameviVictory.moveTo();
@@ -73,7 +73,6 @@ public class GameChess extends Frame {
 							}
 							chess[0].setX((int)p.getX());
 							chess[0].setY((int)p.getY());
-							//System.out.println("棋子移动" + p.getX() + " " + p.getY());
 							chess[0].setCanMove();
 							isRead = !isRead;
 							repaint();
