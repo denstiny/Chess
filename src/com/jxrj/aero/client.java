@@ -1,24 +1,29 @@
 package com.jxrj.aero;
 
+import java.io.*;
+import java.net.ServerSocket;
+import java.net.Socket;
+
 /**
 * client
 */
 public class client {
-
-	private String socket;
-	private String name;
-
-	// 发送数据
-	public void Send() {
+	ObjectInputStream input;
+	ObjectOutputStream writer;
+	ChessNode chessNode;
+	Socket socket;
+	public client() throws IOException {
+		socket = new Socket("127.0.0.1", 10900);
+		//OutputStream os = socket.getOutputStream();
+		System.out.println("请求连接");
+		input = new ObjectInputStream(socket.getInputStream());
+		writer = new ObjectOutputStream(socket.getOutputStream());
 	}
-	// 接受数据
-	public void Recv() {
+	public ChessNode read() throws IOException, ClassNotFoundException {
+		this.chessNode = (ChessNode)input.readObject();
+		return this.chessNode;
 	}
-	public client(String socket, String name) {
-		this.socket = new String(socket);
-		this.name = new String(name);
-	}
-	// 建立连接
-	public void  connection() {
+	public void writer(ChessNode chessNode) throws IOException {
+		writer.writeObject(chessNode);
 	}
 }

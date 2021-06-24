@@ -1,15 +1,17 @@
 package com.jxrj.aero;
 import java.awt.*;
 import java.awt.event.*;
+import java.util.Random;
 
 public class GameChess extends Frame {
+
 
 	public volatile boolean isRead;
 	private Chess chess[] = new Chess[32];
 	public static final Point[][] chessMap = new Point[10][9];
 	private  int  windowWidth = 700;
 	private int   windowHeight = 800;
-	private Image background = Toolkit.getDefaultToolkit().getImage("/home/aero/IdeaProjects/chess/src/com/jxrj/aero/image/main.gif");
+	private Image background = Toolkit.getDefaultToolkit().getImage("Image/main.gif");
 	// 游戏特效
 	private Chessvictory gameviVictory;
 	// 规则
@@ -20,7 +22,8 @@ public class GameChess extends Frame {
 	}
 	public void GameChessStart() {
 		// isRead
-		isRead = true;
+		Random r = new Random();
+		isRead = r.nextInt(2) == 1;
 		// 设置窗口大小
 		setSize(windowWidth, windowHeight);
 		// 创建标题
@@ -110,43 +113,77 @@ public class GameChess extends Frame {
 			chess[i] = null;
 		}
 		// 创建棋子
-		chess[0] = new Chess(false, "黑车", 0, 0);
-		chess[1] = new Chess(false, "黑马", 0, 1);
-		chess[2] = new Chess(false, "黑象", 0, 2);
-		chess[3] = new Chess(false, "黑士", 0, 3);
-		chess[4] = new Chess(false, "黑将", 0, 4);
-		chess[5] = new Chess(false, "黑士", 0, 5);
-		chess[6] = new Chess(false, "黑象", 0, 6);
-		chess[7] = new Chess(false, "黑马", 0, 7);
-		chess[8] = new Chess(false, "黑车", 0, 8);
-		chess[9] = new Chess(false, "黑炮", 2, 1);
-		chess[10] = new Chess(false, "黑炮", 2, 7);
-		chess[11] = new Chess(false, "黑卒", 3, 0);
-		chess[12] = new Chess(false, "黑卒", 3, 2);
-		chess[13] = new Chess(false, "黑卒", 3, 4);
-		chess[14] = new Chess(false, "黑卒", 3, 6);
-		chess[31] = new Chess(false, "黑卒", 3, 8);
-		chess[15] = new Chess(true, "红卒", 6, 8);
-		chess[16] = new Chess(true, "红卒", 6, 4);
-		chess[17] = new Chess(true, "红卒", 6, 6);
-		chess[18] = new Chess(true, "红卒", 6, 2);
-		chess[19] = new Chess(true, "红卒", 6, 0);
-		chess[20] = new Chess(true, "红炮", 7, 1);
-		chess[21] = new Chess(true, "红炮", 7, 7);
-		chess[22] = new Chess(true, "红车", 9, 0);
-		chess[23] = new Chess(true, "红马", 9, 1);
-		chess[24] = new Chess(true, "红象", 9, 2);
-		chess[25] = new Chess(true, "红士", 9, 3);
-		chess[26] = new Chess(true, "红将", 9, 4);
-		chess[27] = new Chess(true, "红士", 9, 5);
-		chess[28] = new Chess(true, "红象", 9, 6);
-		chess[29] = new Chess(true, "红马", 9, 7);
-		chess[30] = new Chess(true, "红车", 9, 8);
+		if(isRead) {
+			chess[0] = new Chess(false, "黑车", 0, 0);
+			chess[1] = new Chess(false, "黑马", 0, 1);
+			chess[2] = new Chess(false, "黑象", 0, 2);
+			chess[3] = new Chess(false, "黑士", 0, 3);
+			chess[4] = new Chess(false, "黑将", 0, 4);
+			chess[5] = new Chess(false, "黑士", 0, 5);
+			chess[6] = new Chess(false, "黑象", 0, 6);
+			chess[7] = new Chess(false, "黑马", 0, 7);
+			chess[8] = new Chess(false, "黑车", 0, 8);
+			chess[9] = new Chess(false, "黑炮", 2, 1);
+			chess[10] = new Chess(false, "黑炮", 2, 7);
+			chess[11] = new Chess(false, "黑卒", 3, 0);
+			chess[12] = new Chess(false, "黑卒", 3, 2);
+			chess[13] = new Chess(false, "黑卒", 3, 4);
+			chess[14] = new Chess(false, "黑卒", 3, 6);
+			chess[31] = new Chess(false, "黑卒", 3, 8);
+			chess[15] = new Chess(true, "红卒", 6, 8);
+			chess[16] = new Chess(true, "红卒", 6, 4);
+			chess[17] = new Chess(true, "红卒", 6, 6);
+			chess[18] = new Chess(true, "红卒", 6, 2);
+			chess[19] = new Chess(true, "红卒", 6, 0);
+			chess[20] = new Chess(true, "红炮", 7, 1);
+			chess[21] = new Chess(true, "红炮", 7, 7);
+			chess[22] = new Chess(true, "红车", 9, 0);
+			chess[23] = new Chess(true, "红马", 9, 1);
+			chess[24] = new Chess(true, "红象", 9, 2);
+			chess[25] = new Chess(true, "红士", 9, 3);
+			chess[26] = new Chess(true, "红将", 9, 4);
+			chess[27] = new Chess(true, "红士", 9, 5);
+			chess[28] = new Chess(true, "红象", 9, 6);
+			chess[29] = new Chess(true, "红马", 9, 7);
+			chess[30] = new Chess(true, "红车", 9, 8);
+		} else {
+			chess[0] = new Chess(false, "红车", 0, 0);
+			chess[1] = new Chess(false, "红马", 0, 1);
+			chess[2] = new Chess(false, "红象", 0, 2);
+			chess[3] = new Chess(false, "红士", 0, 3);
+			chess[4] = new Chess(false, "红将", 0, 4);
+			chess[5] = new Chess(false, "红士", 0, 5);
+			chess[6] = new Chess(false, "红象", 0, 6);
+			chess[7] = new Chess(false, "红马", 0, 7);
+			chess[8] = new Chess(false, "红车", 0, 8);
+			chess[9] = new Chess(false, "红炮", 2, 1);
+			chess[10] = new Chess(false, "红炮", 2, 7);
+			chess[11] = new Chess(false, "红卒", 3, 0);
+			chess[12] = new Chess(false, "红卒", 3, 2);
+			chess[13] = new Chess(false, "红卒", 3, 4);
+			chess[14] = new Chess(false, "红卒", 3, 6);
+			chess[31] = new Chess(false, "红卒", 3, 8);
+			chess[15] = new Chess(true, "黑卒", 6, 8);
+			chess[16] = new Chess(true, "黑卒", 6, 4);
+			chess[17] = new Chess(true, "黑卒", 6, 6);
+			chess[18] = new Chess(true, "黑卒", 6, 2);
+			chess[19] = new Chess(true, "黑卒", 6, 0);
+			chess[20] = new Chess(true, "黑炮", 7, 1);
+			chess[21] = new Chess(true, "黑炮", 7, 7);
+			chess[22] = new Chess(true, "黑车", 9, 0);
+			chess[23] = new Chess(true, "黑马", 9, 1);
+			chess[24] = new Chess(true, "黑象", 9, 2);
+			chess[25] = new Chess(true, "黑士", 9, 3);
+			chess[26] = new Chess(true, "黑将", 9, 4);
+			chess[27] = new Chess(true, "黑士", 9, 5);
+			chess[28] = new Chess(true, "黑象", 9, 6);
+			chess[29] = new Chess(true, "黑马", 9, 7);
+			chess[30] = new Chess(true, "黑车", 9, 8);
+		}
 	}
 
 	// 如果红色方选中的黑色棋子，且符合移动规则，则删除黑色方的棋子 红色棋子移动到黑色方棋子位置
 	public boolean chessToPoint(Point point) {
-		System.out.print(isRead ? "红色方 " : "黑色方 ");
 		for (int i = 0; i < chess.length; i++)
 			// 判断该坐标是否有棋子
 			if (chess[i] != null && chess[i].get_X() == point.getX() && chess[i].get_Y() == point.getY()) {

@@ -15,13 +15,13 @@ import java.util.ArrayList;
 
 public class Chessvictory extends Frame {
 	private Image background = Toolkit.getDefaultToolkit().getImage(
-	                               "/mnt/home/code/java/Chess/src/com/jxrj/aero/Image/background.png");
+	                               "Image/background.png");
 	private Image black_win = Toolkit.getDefaultToolkit().getImage(
-	                              "/mnt/home/code/java/Chess/src/com/jxrj/aero/Image/black-win.png");
+	                              "Image/black-win.png");
 	private Image read_win = Toolkit.getDefaultToolkit().getImage(
-	                             "/mnt/home/code/java/Chess/src/com/jxrj/aero/Image/red-win.png");
+	                             "Image/red-win.png");
 	private Image AllReset = Toolkit.getDefaultToolkit().getImage(
-	                             "/mnt/home/code/java/Chess/src/com/jxrj/aero/Image/ButtonAllReset_1.png");
+	                             "Image/ButtonAllReset_1.png");
 
 
 	private ArrayList<ChessElement> Element = new ArrayList<>();
@@ -71,7 +71,7 @@ public class Chessvictory extends Frame {
 		// chess 被吃掉的棋子
 		if (chess.getName().contains("将") ) {
 			ChessVictory();
-			if (chess.getisread()) {
+			if (chess.getName().contains("红")) {
 				// 当被吃掉的是红将
 				readVicator();
 			} else {

@@ -14,7 +14,7 @@ public class Chess {
 		this.name = name;
 		this.x = x;
 		this.y = y;
-		icon = Toolkit.getDefaultToolkit().getImage("/home/aero/IdeaProjects/chess/src/com/jxrj/aero/image/" + name + ".gif");
+		icon = Toolkit.getDefaultToolkit().getImage("Image/" + name + ".gif");
 		System.out.println("创建棋子" + name);
 	}
 	public boolean getisread() {

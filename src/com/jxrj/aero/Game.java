@@ -19,11 +19,11 @@ public class Game extends Frame {
 	private ArrayList<ChessElement> Element = new ArrayList<>();
 
 	private Image background = Toolkit.getDefaultToolkit().getImage(
-	                               "/mnt/home/code/java/Chess/src/com/jxrj/aero/Image/background.png");
+	                               "Image/background.png");
 	private Image Start = Toolkit.getDefaultToolkit().getImage(
-	                          "/mnt/home/code/java/Chess/src/com/jxrj/aero/Image/Menu1_1.png");
+	                          "Image/Menu1_1.png");
 	private Image Exit = Toolkit.getDefaultToolkit().getImage(
-	                         "/mnt/home/code/java/Chess/src/com/jxrj/aero/Image/Menu4_1.png");
+	                         "Image/Menu4_1.png");
 	public Game() {}
 	public Game(GameChess gameChess) {
 		// 设置窗口大小
@@ -64,7 +64,7 @@ public class Game extends Frame {
 				int max_x = windowWidth / 2 - 500 / 2 ;
 				int max_y = windowHeight / 2;
 				if(e.getX() > max_x && e.getX() < max_x + 500 && e.getY() > max_y && e.getY() < max_y + 100) {
-//					setVisible(false);
+					// 开始游戏
 					dispose();
 					GameStart(gameChess);
 				}
